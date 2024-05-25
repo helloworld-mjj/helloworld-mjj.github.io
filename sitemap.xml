@@ -17,13 +17,10 @@
     <loc>https://helloworld-mjj.github.io/categories/test/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://helloworld-mjj.github.io/categories/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://helloworld-mjj.github.io/archives/</loc>
+    <loc>https://helloworld-mjj.github.io/page/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://helloworld-mjj.github.io/page/</loc>
+    <loc>https://helloworld-mjj.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://helloworld-mjj.github.io/tags/css/</loc>
@@ -38,16 +35,10 @@
     <loc>https://helloworld-mjj.github.io/p/markdown-syntax-guide/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://helloworld-mjj.github.io/categories/syntax/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://helloworld-mjj.github.io/tags/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://helloworld-mjj.github.io/tags/themes/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://helloworld-mjj.github.io/categories/themes/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://helloworld-mjj.github.io/tags/privacy/</loc>
@@ -65,9 +56,6 @@
     <loc>https://helloworld-mjj.github.io/tags/tag-with-whitespaces/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://helloworld-mjj.github.io/categories/test-with-whitespaces/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://helloworld-mjj.github.io/tags/text/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
@@ -80,10 +68,10 @@
     <loc>https://helloworld-mjj.github.io/p/emoji-support/</loc>
     <lastmod>2019-03-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://helloworld-mjj.github.io/links/</loc>
+    <loc>https://helloworld-mjj.github.io/%E5%85%B3%E4%BA%8E/</loc>
+  </url><url>
+    <loc>https://helloworld-mjj.github.io/%E9%93%BE%E6%8E%A5/</loc>
   </url><url>
     <loc>https://helloworld-mjj.github.io/search/</loc>
-  </url><url>
-    <loc>https://helloworld-mjj.github.io/%E5%85%B3%E4%BA%8E/</loc>
   </url>
 </urlset>
