@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>我的笔记 on MJJ&#39;s BLog 💭</title>
-        <link>https://helloworld-mjj.github.io/categories/%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/</link>
-        <description>Recent content in 我的笔记 on MJJ&#39;s BLog 💭</description>
+        <title>Docker on MJJ&#39;s BLog 💭</title>
+        <link>https://helloworld-mjj.github.io/tags/docker/</link>
+        <description>Recent content in Docker on MJJ&#39;s BLog 💭</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>MJJ</copyright>
-        <lastBuildDate>Sat, 25 May 2024 17:30:58 +0800</lastBuildDate><atom:link href="https://helloworld-mjj.github.io/categories/%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 25 May 2024 17:30:58 +0800</lastBuildDate><atom:link href="https://helloworld-mjj.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Docker笔记</title>
         <link>https://helloworld-mjj.github.io/p/docker%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Sat, 25 May 2024 17:30:58 +0800</pubDate>
