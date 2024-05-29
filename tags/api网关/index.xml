@@ -13,7 +13,7 @@
         <pubDate>Wed, 29 May 2024 17:30:58 +0800</pubDate>
         
         <guid>https://helloworld-mjj.github.io/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/</guid>
-        <description>&lt;h2 id=&#34;1-目录结构&#34;&gt;1. 目录结构
+        <description>&lt;h2 id=&#34;目录结构&#34;&gt;目录结构
 &lt;/h2&gt;&lt;h3 id=&#34;模块介绍&#34;&gt;模块介绍
 &lt;/h3&gt;&lt;p&gt;&lt;code&gt;mGateway-client&lt;/code&gt;: 定义了一些注解以及用于将测试服务注册到注册中心&lt;br&gt;
 &lt;code&gt;mGateway-http-server&lt;/code&gt;: 定义了一些测试类，结合client模块注册到注册中心方便进行网关测试&lt;br&gt;
@@ -40,7 +40,7 @@
 &lt;code&gt;enums&lt;/code&gt;: 此包定义了一些枚举类型&lt;br&gt;
 &lt;code&gt;exception&lt;/code&gt;: 此包定义了网关中的异常类&lt;br&gt;
 &lt;code&gt;utils&lt;/code&gt;: 此包定义了一些工具类，包括对象转换、JWT工具、IP解析等&lt;/p&gt;
-&lt;h2 id=&#34;2-功能实现&#34;&gt;2. 功能实现
+&lt;h2 id=&#34;功能实现&#34;&gt;功能实现
 &lt;/h2&gt;&lt;h3 id=&#34;服务器实现&#34;&gt;服务器实现
 &lt;/h3&gt;&lt;p&gt;我们做为网关首先需要可以接收网络请求，这里使用Netty构建服务器，主要得益于Netty的Reactor模型，netty服务器的实现主要在&lt;code&gt;com.gateway.core.netty.NettyHttpServer&lt;/code&gt;这个类中。&lt;br&gt;
 主要思路是使用&lt;code&gt;BossEventLoopGroup&lt;/code&gt;来管理网络连接，而&lt;code&gt;WorkerEventLoopGroup&lt;/code&gt;来管理网络I/O，&lt;code&gt;WorkerEventLoopGroup&lt;/code&gt;接收到I/O请求作为生产者生产一个事件交给&lt;code&gt;Disruptor&lt;/code&gt;，而使用了一组消费者线程池来处理&lt;code&gt;Disruptor&lt;/code&gt;中的事件。&lt;/p&gt;
@@ -51,7 +51,8 @@
 &lt;code&gt;BaseContext&lt;/code&gt;为上下文的基本实现，定义了上下文的协议、状态、异常、上下文相关参数、以及对应的netty上下文。&lt;br&gt;
 &lt;code&gt;GateContext&lt;/code&gt;为网关上下文的实现，继承了&lt;code&gt;BaseContext&lt;/code&gt;，并且封装了request和response以及请求规则和相关参数。&lt;/p&gt;
 &lt;h3 id=&#34;过滤器链实现&#34;&gt;过滤器链实现
-&lt;/h3&gt;&lt;p&gt;所有的过滤器都需要实现&lt;code&gt;Filter&lt;/code&gt;接口。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;所有的过滤器都需要实现&lt;code&gt;Filter&lt;/code&gt;接口，启动时会以SPI的方式加载这些过滤器，只需要实现&lt;code&gt;Filter&lt;/code&gt;这个接口就可以添加自定义的过滤器。&lt;br&gt;
+每次收到请求时我们都需要一个过滤器链来处理请求，这个过滤器链是根据&lt;code&gt;Rule&lt;/code&gt;请求规则构建的，这里为了避免重复对同一种请求重复构建过滤器链，我们对过滤器链添加了缓存。同时我们需要一个过滤器链工厂来构建过滤器链，这个工厂不需要重复构建多个，因为这个工厂可以生产多个过滤器链，所以引入工厂模式和单例模式构建这个过滤器工厂用来生产过滤器链。&lt;/p&gt;
 &lt;p&gt;——更多细节正在梳理中&amp;hellip;&lt;/p&gt;
 </description>
         </item>

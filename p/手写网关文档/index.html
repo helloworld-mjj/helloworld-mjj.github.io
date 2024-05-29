@@ -272,14 +272,14 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#1-目录结构">1. 目录结构</a>
+    <li><a href="#目录结构">目录结构</a>
       <ol>
         <li><a href="#模块介绍">模块介绍</a></li>
         <li><a href="#核心模块目录介绍">核心模块目录介绍</a></li>
         <li><a href="#公共模块目录介绍">公共模块目录介绍</a></li>
       </ol>
     </li>
-    <li><a href="#2-功能实现">2. 功能实现</a>
+    <li><a href="#功能实现">功能实现</a>
       <ol>
         <li><a href="#服务器实现">服务器实现</a></li>
         <li><a href="#客户端实现">客户端实现</a></li>
@@ -355,7 +355,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 4 分钟
                 </time>
             </div>
         
@@ -370,7 +370,7 @@
     <section class="article-content">
     
     
-    <h2 id="1-目录结构">1. 目录结构
+    <h2 id="目录结构">目录结构
 </h2><h3 id="模块介绍">模块介绍
 </h3><p><code>mGateway-client</code>: 定义了一些注解以及用于将测试服务注册到注册中心<br>
 <code>mGateway-http-server</code>: 定义了一些测试类，结合client模块注册到注册中心方便进行网关测试<br>
@@ -397,7 +397,7 @@
 <code>enums</code>: 此包定义了一些枚举类型<br>
 <code>exception</code>: 此包定义了网关中的异常类<br>
 <code>utils</code>: 此包定义了一些工具类，包括对象转换、JWT工具、IP解析等</p>
-<h2 id="2-功能实现">2. 功能实现
+<h2 id="功能实现">功能实现
 </h2><h3 id="服务器实现">服务器实现
 </h3><p>我们做为网关首先需要可以接收网络请求，这里使用Netty构建服务器，主要得益于Netty的Reactor模型，netty服务器的实现主要在<code>com.gateway.core.netty.NettyHttpServer</code>这个类中。<br>
 主要思路是使用<code>BossEventLoopGroup</code>来管理网络连接，而<code>WorkerEventLoopGroup</code>来管理网络I/O，<code>WorkerEventLoopGroup</code>接收到I/O请求作为生产者生产一个事件交给<code>Disruptor</code>，而使用了一组消费者线程池来处理<code>Disruptor</code>中的事件。</p>
@@ -408,7 +408,8 @@
 <code>BaseContext</code>为上下文的基本实现，定义了上下文的协议、状态、异常、上下文相关参数、以及对应的netty上下文。<br>
 <code>GateContext</code>为网关上下文的实现，继承了<code>BaseContext</code>，并且封装了request和response以及请求规则和相关参数。</p>
 <h3 id="过滤器链实现">过滤器链实现
-</h3><p>所有的过滤器都需要实现<code>Filter</code>接口。</p>
+</h3><p>所有的过滤器都需要实现<code>Filter</code>接口，启动时会以SPI的方式加载这些过滤器，只需要实现<code>Filter</code>这个接口就可以添加自定义的过滤器。<br>
+每次收到请求时我们都需要一个过滤器链来处理请求，这个过滤器链是根据<code>Rule</code>请求规则构建的，这里为了避免重复对同一种请求重复构建过滤器链，我们对过滤器链添加了缓存。同时我们需要一个过滤器链工厂来构建过滤器链，这个工厂不需要重复构建多个，因为这个工厂可以生产多个过滤器链，所以引入工厂模式和单例模式构建这个过滤器工厂用来生产过滤器链。</p>
 <p>——更多细节正在梳理中&hellip;</p>
 
 </section>
