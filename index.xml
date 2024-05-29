@@ -7,7 +7,55 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>MJJ</copyright>
-        <lastBuildDate>Sat, 25 May 2024 17:30:58 +0800</lastBuildDate><atom:link href="https://helloworld-mjj.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 29 May 2024 17:30:58 +0800</lastBuildDate><atom:link href="https://helloworld-mjj.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>手写网关文档</title>
+        <link>https://helloworld-mjj.github.io/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/</link>
+        <pubDate>Wed, 29 May 2024 17:30:58 +0800</pubDate>
+        
+        <guid>https://helloworld-mjj.github.io/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/</guid>
+        <description>&lt;h2 id=&#34;1-目录结构&#34;&gt;1. 目录结构
+&lt;/h2&gt;&lt;h3 id=&#34;模块介绍&#34;&gt;模块介绍
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;mGateway-client&lt;/code&gt;: 定义了一些注解以及用于将测试服务注册到注册中心&lt;br&gt;
+&lt;code&gt;mGateway-http-server&lt;/code&gt;: 定义了一些测试类，结合client模块注册到注册中心方便进行网关测试&lt;br&gt;
+&lt;code&gt;mGateway-common&lt;/code&gt;: 此模块为公共模块，定义了一些通用的类&lt;br&gt;
+&lt;code&gt;mGateway-config-center&lt;/code&gt;: 定义了配置中心的接口及其基于SPI的实现&lt;br&gt;
+&lt;code&gt;mGateway-register-center&lt;/code&gt;: 定义了注册中心的接口及其基于SPI的实现&lt;br&gt;
+&lt;code&gt;mGateway-corn&lt;/code&gt;: 此模块为核心模块，包括netty服务器和客户端、过滤器链、上下文的配置等&lt;/p&gt;
+&lt;h3 id=&#34;核心模块目录介绍&#34;&gt;核心模块目录介绍
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;BootStrap&lt;/code&gt;: 网关的启动类，启动网关并加载配置和注册订阅服务&lt;br&gt;
+&lt;code&gt;Config&lt;/code&gt;: 网关的配置信息，此类中配置了默认值，网关启动时会从classpath下的&lt;code&gt;gateway.properties&lt;/code&gt;文件加载配置&lt;br&gt;
+&lt;code&gt;ConfigLoader&lt;/code&gt;: 此类定义了加载配置的具体方法和步骤&lt;br&gt;
+&lt;code&gt;Container&lt;/code&gt;: 此类实现了&lt;code&gt;lifeCycle&lt;/code&gt;接口，用于管理netty的组件，包括它们的初始化、启动、终止&lt;br&gt;
+&lt;code&gt;netty&lt;/code&gt;: 这个包中定义了一些netty的一些组件，包括netty服务器、netty客户端、Disruptor事件处理、Http请求处理等&lt;br&gt;
+&lt;code&gt;helper&lt;/code&gt;: 这个包中定义了解析request和response的组件，以及异步Http请求客户端&lt;br&gt;
+&lt;code&gt;request&lt;/code&gt;: 这个包中定义了网关的请求类&lt;br&gt;
+&lt;code&gt;response&lt;/code&gt;: 这个包中定义了网关的响应类&lt;br&gt;
+&lt;code&gt;disruptor&lt;/code&gt;: 这个包中配置了Disruptor框架&lt;br&gt;
+&lt;code&gt;filter&lt;/code&gt;: 这个包中定义了一系列的过滤器，使用SPI的方式进行加载，包括鉴权过滤器、灰度发布过滤器、限流过滤器、负载均衡过滤器、监控过滤器、路由过滤器等&lt;br&gt;
+&lt;code&gt;context&lt;/code&gt;: 这个包中定义了网关的上下文对象，所谓上下文就是贯穿了整个网关，包含了解析后的请求和响应&lt;br&gt;
+&lt;code&gt;cache&lt;/code&gt;: 这个包中定义了网关的缓存，主要是Caffine实现的本地缓存&lt;/p&gt;
+&lt;h3 id=&#34;公共模块目录介绍&#34;&gt;公共模块目录介绍
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;config&lt;/code&gt;: 此包定义了网关的一些配置信息，比如服务定义实体和服务实体，以及路由规则实体和服务映射关系&lt;br&gt;
+&lt;code&gt;constant&lt;/code&gt;: 此包定义了一些常量&lt;br&gt;
+&lt;code&gt;enums&lt;/code&gt;: 此包定义了一些枚举类型&lt;br&gt;
+&lt;code&gt;exception&lt;/code&gt;: 此包定义了网关中的异常类&lt;br&gt;
+&lt;code&gt;utils&lt;/code&gt;: 此包定义了一些工具类，包括对象转换、JWT工具、IP解析等&lt;/p&gt;
+&lt;h2 id=&#34;2-功能实现&#34;&gt;2. 功能实现
+&lt;/h2&gt;&lt;h3 id=&#34;服务器实现&#34;&gt;服务器实现
+&lt;/h3&gt;&lt;p&gt;我们做为网关首先需要可以接收网络请求，这里使用Netty构建服务器，主要得益于Netty的Reactor模型，netty服务器的实现主要在&lt;code&gt;com.gateway.core.netty.NettyHttpServer&lt;/code&gt;这个类中。&lt;br&gt;
+主要思路是使用&lt;code&gt;BossEventLoopGroup&lt;/code&gt;来管理网络连接，而&lt;code&gt;WorkerEventLoopGroup&lt;/code&gt;来管理网络I/O，&lt;code&gt;WorkerEventLoopGroup&lt;/code&gt;接收到I/O请求作为生产者生产一个事件交给&lt;code&gt;Disruptor&lt;/code&gt;，而使用了一组消费者线程池来处理&lt;code&gt;Disruptor&lt;/code&gt;中的事件。&lt;/p&gt;
+&lt;h3 id=&#34;客户端实现&#34;&gt;客户端实现
+&lt;/h3&gt;&lt;p&gt;这里我们基于异步Http客户端&lt;code&gt;DefaultAsycHttpClient&lt;/code&gt;结合Netty的EventLoopGroup构建了一个用来转发请求的异步Http客户端，其主要实现在&lt;code&gt;com.gateway.core.netty.NettyHttpClient&lt;/code&gt;这个类中。&lt;/p&gt;
+&lt;h3 id=&#34;请求上下文实现&#34;&gt;请求上下文实现
+&lt;/h3&gt;&lt;p&gt;这里我们首先定义了&lt;code&gt;IContext&lt;/code&gt;接口定义了上下文规范。&lt;br&gt;
+&lt;code&gt;BaseContext&lt;/code&gt;为上下文的基本实现，定义了上下文的协议、状态、异常、上下文相关参数、以及对应的netty上下文。&lt;br&gt;
+&lt;code&gt;GateContext&lt;/code&gt;为网关上下文的实现，继承了&lt;code&gt;BaseContext&lt;/code&gt;，并且封装了request和response以及请求规则和相关参数。&lt;/p&gt;
+&lt;h3 id=&#34;过滤器链实现&#34;&gt;过滤器链实现
+&lt;/h3&gt;&lt;p&gt;所有的过滤器都需要实现&lt;code&gt;Filter&lt;/code&gt;接口。&lt;/p&gt;
+&lt;p&gt;——更多细节正在梳理中&amp;hellip;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Docker笔记</title>
         <link>https://helloworld-mjj.github.io/p/docker%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Sat, 25 May 2024 17:30:58 +0800</pubDate>

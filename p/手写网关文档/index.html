@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="对常见的API网关进行对比">
-<title>微服务网关对比</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="以文档的形式梳理手写网关项目，并持续更新...">
+<title>手写网关文档</title>
 
-<link rel='canonical' href='https://helloworld-mjj.github.io/p/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3%E5%AF%B9%E6%AF%94/'>
+<link rel='canonical' href='https://helloworld-mjj.github.io/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/'>
 
-<link rel="stylesheet" href="/scss/style.min.a97759a68d1d4ac91bec8d5a74e50fc95604dc48fcb09f98d94260c638cd2542.css"><meta property='og:title' content="微服务网关对比">
-<meta property='og:description' content="对常见的API网关进行对比">
-<meta property='og:url' content='https://helloworld-mjj.github.io/p/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3%E5%AF%B9%E6%AF%94/'>
+<link rel="stylesheet" href="/scss/style.min.a97759a68d1d4ac91bec8d5a74e50fc95604dc48fcb09f98d94260c638cd2542.css"><meta property='og:title' content="手写网关文档">
+<meta property='og:description' content="以文档的形式梳理手写网关项目，并持续更新...">
+<meta property='og:url' content='https://helloworld-mjj.github.io/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/'>
 <meta property='og:site_name' content='MJJ&#39;s BLog 💭'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='微服务' /><meta property='article:published_time' content='2024-05-25T17:30:58&#43;08:00'/><meta property='article:modified_time' content='2024-05-25T17:30:58&#43;08:00'/>
-<meta name="twitter:title" content="微服务网关对比">
-<meta name="twitter:description" content="对常见的API网关进行对比">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='API网关' /><meta property='article:published_time' content='2024-05-29T17:30:58&#43;08:00'/><meta property='article:modified_time' content='2024-05-29T17:30:58&#43;08:00'/>
+<meta name="twitter:title" content="手写网关文档">
+<meta name="twitter:description" content="以文档的形式梳理手写网关项目，并持续更新...">
     <link rel="shortcut icon" href="/favicon.ico" />
 
   
@@ -272,12 +272,21 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#api网关回顾">API网关回顾</a>
+    <li><a href="#1-目录结构">1. 目录结构</a>
       <ol>
-        <li><a href="#主要功能">主要功能</a></li>
+        <li><a href="#模块介绍">模块介绍</a></li>
+        <li><a href="#核心模块目录介绍">核心模块目录介绍</a></li>
+        <li><a href="#公共模块目录介绍">公共模块目录介绍</a></li>
       </ol>
     </li>
-    <li><a href="#常见的api网关">常见的API网关</a></li>
+    <li><a href="#2-功能实现">2. 功能实现</a>
+      <ol>
+        <li><a href="#服务器实现">服务器实现</a></li>
+        <li><a href="#客户端实现">客户端实现</a></li>
+        <li><a href="#请求上下文实现">请求上下文实现</a></li>
+        <li><a href="#过滤器链实现">过滤器链实现</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -305,12 +314,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3%E5%AF%B9%E6%AF%94/">微服务网关对比</a>
+            <a href="/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/">手写网关文档</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            对常见的API网关进行对比
+            以文档的形式梳理手写网关项目，并持续更新...
         </h3>
         
     </div>
@@ -331,7 +340,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">May 25, 2024</time>
+                <time class="article-time--published">May 29, 2024</time>
             </div>
         
 
@@ -346,7 +355,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -361,29 +370,46 @@
     <section class="article-content">
     
     
-    <h2 id="api网关回顾">API网关回顾
-</h2><h3 id="主要功能">主要功能
-</h3><ol>
-<li>路由转发：通过路由功能将请求转发到目标服务。</li>
-<li>负载均衡：多个服务之间的负载均衡。</li>
-<li>统一鉴权：对用户的身份进行统一的验证。</li>
-<li>协议转换：通过协议转换整合REST、AMQP、RPC等不同的协议。</li>
-<li>指标监控：网关对发送到服务的请求进行监控。</li>
-<li>限流熔断：在网关层面对请求进行限流，并且当服务发生故障时有响应的处理策略，使用户体验良好。</li>
-<li>黑白名单：过滤请求，拦截异常的请求信息。</li>
-<li>灰度发布：可以在多个部署下实现灰度发布。</li>
-<li>流量染色：可以在进出流量时抓住时机。
-20：微服务网管作为自己的日志收集和收集器，对服务URL粒度的日志请求和响应信息就进行拦截。</li>
-</ol>
-<h2 id="常见的api网关">常见的API网关
-</h2><ol>
-<li>Nginx</li>
-<li>Zuul</li>
-<li>SpringCloud Gateway</li>
-<li>Kong</li>
-<li>OpenRestry</li>
-<li>Traefik</li>
-</ol>
+    <h2 id="1-目录结构">1. 目录结构
+</h2><h3 id="模块介绍">模块介绍
+</h3><p><code>mGateway-client</code>: 定义了一些注解以及用于将测试服务注册到注册中心<br>
+<code>mGateway-http-server</code>: 定义了一些测试类，结合client模块注册到注册中心方便进行网关测试<br>
+<code>mGateway-common</code>: 此模块为公共模块，定义了一些通用的类<br>
+<code>mGateway-config-center</code>: 定义了配置中心的接口及其基于SPI的实现<br>
+<code>mGateway-register-center</code>: 定义了注册中心的接口及其基于SPI的实现<br>
+<code>mGateway-corn</code>: 此模块为核心模块，包括netty服务器和客户端、过滤器链、上下文的配置等</p>
+<h3 id="核心模块目录介绍">核心模块目录介绍
+</h3><p><code>BootStrap</code>: 网关的启动类，启动网关并加载配置和注册订阅服务<br>
+<code>Config</code>: 网关的配置信息，此类中配置了默认值，网关启动时会从classpath下的<code>gateway.properties</code>文件加载配置<br>
+<code>ConfigLoader</code>: 此类定义了加载配置的具体方法和步骤<br>
+<code>Container</code>: 此类实现了<code>lifeCycle</code>接口，用于管理netty的组件，包括它们的初始化、启动、终止<br>
+<code>netty</code>: 这个包中定义了一些netty的一些组件，包括netty服务器、netty客户端、Disruptor事件处理、Http请求处理等<br>
+<code>helper</code>: 这个包中定义了解析request和response的组件，以及异步Http请求客户端<br>
+<code>request</code>: 这个包中定义了网关的请求类<br>
+<code>response</code>: 这个包中定义了网关的响应类<br>
+<code>disruptor</code>: 这个包中配置了Disruptor框架<br>
+<code>filter</code>: 这个包中定义了一系列的过滤器，使用SPI的方式进行加载，包括鉴权过滤器、灰度发布过滤器、限流过滤器、负载均衡过滤器、监控过滤器、路由过滤器等<br>
+<code>context</code>: 这个包中定义了网关的上下文对象，所谓上下文就是贯穿了整个网关，包含了解析后的请求和响应<br>
+<code>cache</code>: 这个包中定义了网关的缓存，主要是Caffine实现的本地缓存</p>
+<h3 id="公共模块目录介绍">公共模块目录介绍
+</h3><p><code>config</code>: 此包定义了网关的一些配置信息，比如服务定义实体和服务实体，以及路由规则实体和服务映射关系<br>
+<code>constant</code>: 此包定义了一些常量<br>
+<code>enums</code>: 此包定义了一些枚举类型<br>
+<code>exception</code>: 此包定义了网关中的异常类<br>
+<code>utils</code>: 此包定义了一些工具类，包括对象转换、JWT工具、IP解析等</p>
+<h2 id="2-功能实现">2. 功能实现
+</h2><h3 id="服务器实现">服务器实现
+</h3><p>我们做为网关首先需要可以接收网络请求，这里使用Netty构建服务器，主要得益于Netty的Reactor模型，netty服务器的实现主要在<code>com.gateway.core.netty.NettyHttpServer</code>这个类中。<br>
+主要思路是使用<code>BossEventLoopGroup</code>来管理网络连接，而<code>WorkerEventLoopGroup</code>来管理网络I/O，<code>WorkerEventLoopGroup</code>接收到I/O请求作为生产者生产一个事件交给<code>Disruptor</code>，而使用了一组消费者线程池来处理<code>Disruptor</code>中的事件。</p>
+<h3 id="客户端实现">客户端实现
+</h3><p>这里我们基于异步Http客户端<code>DefaultAsycHttpClient</code>结合Netty的EventLoopGroup构建了一个用来转发请求的异步Http客户端，其主要实现在<code>com.gateway.core.netty.NettyHttpClient</code>这个类中。</p>
+<h3 id="请求上下文实现">请求上下文实现
+</h3><p>这里我们首先定义了<code>IContext</code>接口定义了上下文规范。<br>
+<code>BaseContext</code>为上下文的基本实现，定义了上下文的协议、状态、异常、上下文相关参数、以及对应的netty上下文。<br>
+<code>GateContext</code>为网关上下文的实现，继承了<code>BaseContext</code>，并且封装了request和response以及请求规则和相关参数。</p>
+<h3 id="过滤器链实现">过滤器链实现
+</h3><p>所有的过滤器都需要实现<code>Filter</code>接口。</p>
+<p>——更多细节正在梳理中&hellip;</p>
 
 </section>
 
@@ -392,7 +418,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
+            <a href="/tags/api%E7%BD%91%E5%85%B3/">API网关</a>
         
     </section>
 
@@ -414,12 +440,12 @@
             
                 
 <article class="">
-    <a href="/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/">
+    <a href="/p/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3%E5%AF%B9%E6%AF%94/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">手写网关文档</h2>
+            <h2 class="article-title">微服务网关对比</h2>
         </div>
     </a>
 </article>
