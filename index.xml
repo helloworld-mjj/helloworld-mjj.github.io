@@ -621,7 +621,7 @@
         <pubDate>Sat, 25 May 2024 17:30:58 +0800</pubDate>
         
         <guid>https://helloworld-mjj.github.io/p/%E6%9E%84%E5%BB%BA%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/</guid>
-        <description>&lt;h2 id=&#34;安装hugo&#34;&gt;安装Hugo
+        <description>&lt;img src="https://helloworld-mjj.github.io/p/%E6%9E%84%E5%BB%BA%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/pawel-czerwinski-8uZPynIu-rQ-unsplash.jpg" alt="Featured image of post 构建我的博客网站" /&gt;&lt;h2 id=&#34;安装hugo&#34;&gt;安装Hugo
 &lt;/h2&gt;&lt;p&gt;我使用的ubuntu系统，但是这个命令下载hugo下载下来不是最新的版本，所以有一些坑。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
