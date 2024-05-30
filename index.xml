@@ -13,7 +13,7 @@
         <pubDate>Wed, 29 May 2024 17:30:58 +0800</pubDate>
         
         <guid>https://helloworld-mjj.github.io/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/</guid>
-        <description>&lt;h2 id=&#34;网关功能&#34;&gt;网关功能
+        <description>&lt;img src="https://helloworld-mjj.github.io/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/002119-17151852794427.jpg" alt="Featured image of post 手写网关文档" /&gt;&lt;h2 id=&#34;网关功能&#34;&gt;网关功能
 &lt;/h2&gt;&lt;p&gt;这里先梳理一下我们的网关主要的功能。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;请求路由: 这是网关的最核心的功能，将前端的请求聚合到网关进行分发。&lt;/li&gt;
