@@ -13,7 +13,17 @@
         <pubDate>Wed, 29 May 2024 17:30:58 +0800</pubDate>
         
         <guid>https://helloworld-mjj.github.io/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/</guid>
-        <description>&lt;h2 id=&#34;目录结构&#34;&gt;目录结构
+        <description>&lt;h2 id=&#34;网关功能&#34;&gt;网关功能
+&lt;/h2&gt;&lt;p&gt;这里先梳理一下我们的网关主要的功能。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;请求路由: 这是网关的最核心的功能，将前端的请求聚合到网关进行分发。&lt;/li&gt;
+&lt;li&gt;熔断限流: 支持单机限流以及分布式限流，并且支持多种限流算法。为了下游服务的安全性，我们必须对部分可能出现大流量的接口进行限流，并对不可用的服务进行熔断防止服务雪崩。&lt;/li&gt;
+&lt;li&gt;统一鉴权: 在网关层进行统一鉴权，让下游服务更专注于业务代码的编写。&lt;/li&gt;
+&lt;li&gt;服务监控: 在网关层进行服务的监控，同样可以让下游服务专注于业务代码的编写。&lt;/li&gt;
+&lt;li&gt;负载均衡: 这也是网关的一个核心功能，需要对多个相同的服务进行负载均衡，保证各个服务器可以分担压力。&lt;/li&gt;
+&lt;li&gt;灰度发布: 灰度发布旨在提高服务的可用性，在发布新版本时不用停止服务。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;目录结构&#34;&gt;目录结构
 &lt;/h2&gt;&lt;h3 id=&#34;模块介绍&#34;&gt;模块介绍
 &lt;/h3&gt;&lt;p&gt;&lt;code&gt;mGateway-client&lt;/code&gt;: 定义了一些注解以及用于将测试服务注册到注册中心&lt;br&gt;
 &lt;code&gt;mGateway-http-server&lt;/code&gt;: 定义了一些测试类，结合client模块注册到注册中心方便进行网关测试&lt;br&gt;
@@ -52,7 +62,19 @@
 &lt;code&gt;GateContext&lt;/code&gt;为网关上下文的实现，继承了&lt;code&gt;BaseContext&lt;/code&gt;，并且封装了request和response以及请求规则和相关参数。&lt;/p&gt;
 &lt;h3 id=&#34;过滤器链实现&#34;&gt;过滤器链实现
 &lt;/h3&gt;&lt;p&gt;所有的过滤器都需要实现&lt;code&gt;Filter&lt;/code&gt;接口，启动时会以SPI的方式加载这些过滤器，只需要实现&lt;code&gt;Filter&lt;/code&gt;这个接口就可以添加自定义的过滤器。&lt;br&gt;
-每次收到请求时我们都需要一个过滤器链来处理请求，这个过滤器链是根据&lt;code&gt;Rule&lt;/code&gt;请求规则构建的，这里为了避免重复对同一种请求重复构建过滤器链，我们对过滤器链添加了缓存。同时我们需要一个过滤器链工厂来构建过滤器链，这个工厂不需要重复构建多个，因为这个工厂可以生产多个过滤器链，所以引入工厂模式和单例模式构建这个过滤器工厂用来生产过滤器链。&lt;/p&gt;
+每次收到请求时我们都需要一个过滤器链来处理请求，这个过滤器链是根据&lt;code&gt;Rule&lt;/code&gt;请求规则构建的，这里为了避免重复对同一种请求重复构建过滤器链，我们对过滤器链添加了缓存。同时我们需要一个过滤器链工厂来构建过滤器链，这个工厂不需要重复构建多个，因为这个工厂可以生产多个过滤器链，所以引入工厂模式和单例模式构建这个过滤器工厂用来生产过滤器链。&lt;br&gt;
+实际上我们的网关的核心功能也就是一些过滤器的集合。&lt;/p&gt;
+&lt;h4 id=&#34;鉴权过滤器&#34;&gt;鉴权过滤器
+&lt;/h4&gt;&lt;p&gt;使用JWT鉴权&lt;/p&gt;
+&lt;h4 id=&#34;限流过滤器&#34;&gt;限流过滤器
+&lt;/h4&gt;&lt;p&gt;支持滑动时间窗口限流、令牌桶限流、漏斗限流&lt;/p&gt;
+&lt;h4 id=&#34;负载均衡过滤器&#34;&gt;负载均衡过滤器
+&lt;/h4&gt;&lt;p&gt;支持随机负载、轮询、加权轮询&lt;/p&gt;
+&lt;h4 id=&#34;监控过滤器&#34;&gt;监控过滤器
+&lt;/h4&gt;&lt;p&gt;使用prompt进行监控&lt;/p&gt;
+&lt;h4 id=&#34;灰度发布过滤器&#34;&gt;灰度发布过滤器
+&lt;/h4&gt;&lt;h4 id=&#34;路由过滤器&#34;&gt;路由过滤器
+&lt;/h4&gt;&lt;p&gt;使用Hystrix进行熔断机制&lt;/p&gt;
 &lt;p&gt;——更多细节正在梳理中&amp;hellip;&lt;/p&gt;
 </description>
         </item>
