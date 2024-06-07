@@ -7,21 +7,21 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>MJJ</copyright>
-        <lastBuildDate>Wed, 29 May 2024 17:30:58 +0800</lastBuildDate><atom:link href="https://helloworld-mjj.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 07 Jun 2024 17:30:58 +0800</lastBuildDate><atom:link href="https://helloworld-mjj.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>我的笔记</title>
+        <link>https://helloworld-mjj.github.io/categories/%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Fri, 07 Jun 2024 17:30:58 +0800</pubDate>
+        
+        <guid>https://helloworld-mjj.github.io/categories/%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>后端</title>
         <link>https://helloworld-mjj.github.io/categories/%E5%90%8E%E7%AB%AF/</link>
         <pubDate>Wed, 29 May 2024 17:30:58 +0800</pubDate>
         
         <guid>https://helloworld-mjj.github.io/categories/%E5%90%8E%E7%AB%AF/</guid>
-        <description>&lt;img src="https://helloworld-mjj.github.io/categories/%E5%90%8E%E7%AB%AF/florian-klauer-nptLmg6jqDo-unsplash.jpg" alt="Featured image of post 后端" /&gt;</description>
-        </item>
-        <item>
-        <title>我的笔记</title>
-        <link>https://helloworld-mjj.github.io/categories/%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/</link>
-        <pubDate>Sat, 25 May 2024 17:30:58 +0800</pubDate>
-        
-        <guid>https://helloworld-mjj.github.io/categories/%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/</guid>
-        <description>&lt;img src="https://helloworld-mjj.github.io/categories/%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post 我的笔记" /&gt;</description>
+        <description></description>
         </item>
         
     </channel>
