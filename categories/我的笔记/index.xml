@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>我的笔记 on MJJ&#39;s BLog 💭</title>
-        <link>http://localhost:1313/categories/%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/</link>
+        <link>https://helloworld-mjj.github.io/categories/%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/</link>
         <description>Recent content in 我的笔记 on MJJ&#39;s BLog 💭</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>MJJ</copyright>
-        <lastBuildDate>Sat, 25 May 2024 17:30:58 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 25 May 2024 17:30:58 +0800</lastBuildDate><atom:link href="https://helloworld-mjj.github.io/categories/%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Docker笔记</title>
-        <link>http://localhost:1313/p/docker%E7%AC%94%E8%AE%B0/</link>
+        <link>https://helloworld-mjj.github.io/p/docker%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Sat, 25 May 2024 17:30:58 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/docker%E7%AC%94%E8%AE%B0/</guid>
+        <guid>https://helloworld-mjj.github.io/p/docker%E7%AC%94%E8%AE%B0/</guid>
         <description>&lt;h2 id=&#34;docker配置镜像加速&#34;&gt;Docker配置镜像加速
 &lt;/h2&gt;&lt;p&gt;目前主流 Linux 发行版均已使用 systemd 进行服务管理，这里介绍如何在使用 systemd 的 Linux 发行版中配置镜像加速器。&lt;/p&gt;
 &lt;p&gt;请首先执行以下命令，查看是否在 docker.service 文件中配置过镜像地址。&lt;/p&gt;
