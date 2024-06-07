@@ -708,32 +708,23 @@
         <description></description>
         </item>
         <item>
+        <title>工具</title>
+        <link>https://helloworld-mjj.github.io/%E5%B7%A5%E5%85%B7/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://helloworld-mjj.github.io/%E5%B7%A5%E5%85%B7/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>关于</title>
         <link>https://helloworld-mjj.github.io/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://helloworld-mjj.github.io/%E5%85%B3%E4%BA%8E/</guid>
-        <description>&lt;h2 id=&#34;这里是网站的说明信息&#34;&gt;这里是网站的说明信息
-&lt;/h2&gt;&lt;p&gt;Written in Go, Hugo is an open source static site generator available under the &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio/hugo/blob/master/LICENSE&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Apache License 2.0.&lt;/a&gt; Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.&lt;/p&gt;
-&lt;p&gt;Hugo makes use of a variety of open source projects including:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/yuin/goldmark&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/yuin/goldmark&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/alecthomas/chroma&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/alecthomas/chroma&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/muesli/smartcrop&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/muesli/smartcrop&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/spf13/cobra&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/spf13/cobra&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/spf13/viper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/spf13/viper&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.&lt;/p&gt;
-&lt;p&gt;Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.&lt;/p&gt;
-&lt;p&gt;Websites built with Hugo are extremely fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.&lt;/p&gt;
-&lt;p&gt;Learn more and contribute on &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+        <description>&lt;p&gt;🕳️ 很荣幸被您看到我的博客网站，欢迎来到我的博客&amp;hellip;&lt;/p&gt;
+&lt;p&gt;该网站使用hugo的stack主题构建而来&amp;hellip;&lt;/p&gt;
+&lt;p&gt;如果有任何想法都非常欢迎在评论中提出&amp;hellip;&lt;/p&gt;
+&lt;p&gt;私信：mjj962723947@gmail.com&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -751,6 +742,134 @@
         
         <guid>https://helloworld-mjj.github.io/search/</guid>
         <description></description>
+        </item>
+        <item>
+        <title>图库</title>
+        <link>https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/001415-171388885556e3.jpg&#34;
+	width=&#34;1202&#34;
+	height=&#34;676&#34;
+	srcset=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/001415-171388885556e3_hu2681fde5eab9be8631e1ce8430df406a_556704_480x0_resize_q75_box.jpg 480w, https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/001415-171388885556e3_hu2681fde5eab9be8631e1ce8430df406a_556704_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/002119-17151852794427.jpg&#34;
+	width=&#34;1202&#34;
+	height=&#34;676&#34;
+	srcset=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/002119-17151852794427_hu1de00f31219697be107f0c9d232deda9_489357_480x0_resize_q75_box.jpg 480w, https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/002119-17151852794427_hu1de00f31219697be107f0c9d232deda9_489357_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/003804-1714927084eebc.jpg&#34;
+	width=&#34;1202&#34;
+	height=&#34;676&#34;
+	srcset=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/003804-1714927084eebc_huc59d5a95af489e201ecf3ce9590c6fb9_593835_480x0_resize_q75_box.jpg 480w, https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/003804-1714927084eebc_huc59d5a95af489e201ecf3ce9590c6fb9_593835_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/105652-1715396212ccec.jpg&#34;
+	width=&#34;1201&#34;
+	height=&#34;503&#34;
+	srcset=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/105652-1715396212ccec_huce6a531cfbc3618a394611585452d77b_357102_480x0_resize_q75_box.jpg 480w, https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/105652-1715396212ccec_huce6a531cfbc3618a394611585452d77b_357102_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;238&#34;
+		data-flex-basis=&#34;573px&#34;
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/194746-1716119266f08d.jpg&#34;
+	width=&#34;1202&#34;
+	height=&#34;676&#34;
+	srcset=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/194746-1716119266f08d_huac73a7affe6da3335d5016ff76e29125_603321_480x0_resize_q75_box.jpg 480w, https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/194746-1716119266f08d_huac73a7affe6da3335d5016ff76e29125_603321_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/224857-17144021375744.jpg&#34;
+	width=&#34;1202&#34;
+	height=&#34;676&#34;
+	srcset=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/224857-17144021375744_hu8ba9bcecdf5488533e24a44ecb799b74_383938_480x0_resize_q75_box.jpg 480w, https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/224857-17144021375744_hu8ba9bcecdf5488533e24a44ecb799b74_383938_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/232824-1715009304fda0.jpg&#34;
+	width=&#34;1202&#34;
+	height=&#34;676&#34;
+	srcset=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/232824-1715009304fda0_hufb402bd6ac13b695563f95678e04ba63_729205_480x0_resize_q75_box.jpg 480w, https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/232824-1715009304fda0_hufb402bd6ac13b695563f95678e04ba63_729205_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/235238-17151835580c3c.jpg&#34;
+	width=&#34;1202&#34;
+	height=&#34;676&#34;
+	srcset=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/235238-17151835580c3c_hub1bc9ff5349eb19be7b4ed30dbe999ee_455342_480x0_resize_q75_box.jpg 480w, https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/235238-17151835580c3c_hub1bc9ff5349eb19be7b4ed30dbe999ee_455342_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;177&#34;
+		data-flex-basis=&#34;426px&#34;
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/matt-le-SJSpo9hQf7s-unsplash.jpg&#34;
+	width=&#34;1500&#34;
+	height=&#34;1000&#34;
+	srcset=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/matt-le-SJSpo9hQf7s-unsplash_hu958d513eeefe5556a31d065479ecc5ac_14205_480x0_resize_q75_box.jpg 480w, https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/matt-le-SJSpo9hQf7s-unsplash_hu958d513eeefe5556a31d065479ecc5ac_14205_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;150&#34;
+		data-flex-basis=&#34;360px&#34;
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/luca-bravo-alS7ewQ41M8-unsplash.jpg&#34;
+	width=&#34;1000&#34;
+	height=&#34;667&#34;
+	srcset=&#34;https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/luca-bravo-alS7ewQ41M8-unsplash_hu0a3f1163de68d0b9471979ebf0ecf11e_32400_480x0_resize_q75_box.jpg 480w, https://helloworld-mjj.github.io/%E5%9B%BE%E5%BA%93/luca-bravo-alS7ewQ41M8-unsplash_hu0a3f1163de68d0b9471979ebf0ecf11e_32400_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;149&#34;
+		data-flex-basis=&#34;359px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
         </item>
         
     </channel>
