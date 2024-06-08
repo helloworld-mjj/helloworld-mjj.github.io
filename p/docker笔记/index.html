@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://helloworld-mjj.github.io/p/docker%E7%AC%94%E8%AE%B0/'>
 
-<link rel="stylesheet" href="/scss/style.min.a97759a68d1d4ac91bec8d5a74e50fc95604dc48fcb09f98d94260c638cd2542.css"><meta property='og:title' content="Docker笔记">
+<link rel="stylesheet" href="/scss/style.min.65717061fb03ae5d17fd1ec4fe3215a7a57c6dadecda969c978d79577a8bef47.css"><meta property='og:title' content="Docker笔记">
 <meta property='og:description' content="记录使用Docker的相关命令，忘记时可以回顾一下">
 <meta property='og:url' content='https://helloworld-mjj.github.io/p/docker%E7%AC%94%E8%AE%B0/'>
 <meta property='og:site_name' content='MJJ&#39;s BLog 💭'>
@@ -381,6 +381,7 @@
     
 </div>
 
+
 </header>
 
     <section class="article-content">
@@ -389,86 +390,30 @@
     <h2 id="docker配置镜像加速">Docker配置镜像加速
 </h2><p>目前主流 Linux 发行版均已使用 systemd 进行服务管理，这里介绍如何在使用 systemd 的 Linux 发行版中配置镜像加速器。</p>
 <p>请首先执行以下命令，查看是否在 docker.service 文件中配置过镜像地址。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ systemctl cat docker <span class="p">|</span> grep <span class="s1">&#39;\-\-registry\-mirror&#39;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>如果该命令有输出，那么请执行 $ systemctl cat docker 查看 ExecStart= 出现的位置，修改对应的文件内容去掉 &ndash;registry-mirror 参数及其值，并按接下来的步骤进行配置。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ systemctl cat docker <span class="p">|</span> grep <span class="s1">&#39;\-\-registry\-mirror&#39;</span>
+</span></span></code></pre></div><p>如果该命令有输出，那么请执行 $ systemctl cat docker 查看 ExecStart= 出现的位置，修改对应的文件内容去掉 &ndash;registry-mirror 参数及其值，并按接下来的步骤进行配置。</p>
 <p>如果以上命令没有任何输出，那么就可以在 /etc/docker/daemon.json 中写入如下内容（如果文件不存在请新建该文件）：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;registry-mirrors&#34;</span>: <span class="o">[</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://hub-mirror.c.163.com&#34;</span>,
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://mirror.baidubce.com&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>注意，一定要保证该文件符合 json 规范，否则 Docker 将不能启动。
+</span></span></code></pre></div><p>注意，一定要保证该文件符合 json 规范，否则 Docker 将不能启动。
 之后重新启动服务。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ sudo systemctl daemon-reload
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ sudo systemctl daemon-reload
 </span></span><span class="line"><span class="cl">$ sudo systemctl restart docker
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="docker构建redis集群主从模式">Docker构建Redis集群（主从模式）
+</span></span></code></pre></div><h2 id="docker构建redis集群主从模式">Docker构建Redis集群（主从模式）
 </h2><ol>
 <li>创建Redis网络</li>
 </ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker network ls <span class="c1">#查看网络</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker network ls <span class="c1">#查看网络</span>
 </span></span><span class="line"><span class="cl">docker network create redis --subnet 192.168.100.0/24 <span class="c1">#创建网络</span>
 </span></span><span class="line"><span class="cl">docker network inspect redis <span class="c1">#查看网络配置信息</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="2">
+</span></span></code></pre></div><ol start="2">
 <li>创建Redis配置文件</li>
 </ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="k">for</span> port in <span class="k">$(</span>seq <span class="m">1</span> 6<span class="k">)</span><span class="p">;</span> <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="k">for</span> port in <span class="k">$(</span>seq <span class="m">1</span> 6<span class="k">)</span><span class="p">;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="k">do</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>mkdir -p /mydata/redis/node-<span class="si">${</span><span class="nv">port</span><span class="si">}</span>/conf
 </span></span><span class="line"><span class="cl">touch /mydata/redis/node-<span class="si">${</span><span class="nv">port</span><span class="si">}</span>/conf/redis.conf
@@ -484,60 +429,10 @@
 </span></span></span><span class="line"><span class="cl"><span class="s">appendonly yes
 </span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
 </span></span><span class="line"><span class="cl"><span class="k">done</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="3">
+</span></span></code></pre></div><ol start="3">
 <li>启动Redis容器</li>
 </ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 第一个节点配置命令</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 第一个节点配置命令</span>
 </span></span><span class="line"><span class="cl">docker run -p 6371:6379 -p 16371:16379 --name redis-01 <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-1/data:/data <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-1/conf/redis.conf:/etc/redis/redis.conf <span class="se">\
@@ -581,89 +476,34 @@
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-6/data:/data <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-6/conf/redis.conf:/etc/redis/redis.conf <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>-d --net redis --ip 192.168.100.16 redis:latest redis-server /etc/redis/redis.conf 
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="5">
+</span></span></code></pre></div><ol start="5">
 <li>创建Redis集群</li>
 </ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it redis-01 /bin/sh
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it redis-01 /bin/sh
 </span></span><span class="line"><span class="cl">redis-cli --cluster create 192.168.100.11:6379 192.168.100.12:6379 192.168.100.13:6379 192.168.100.14:6379 192.168.100.15:6379 192.168.100.16:6379 --cluster-replicas <span class="m">1</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="6">
+</span></span></code></pre></div><ol start="6">
 <li>查看Redis集群</li>
 </ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 进入集群</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 进入集群</span>
 </span></span><span class="line"><span class="cl">redis-cli -c
 </span></span><span class="line"><span class="cl"><span class="c1"># 查看集群内节点</span>
 </span></span><span class="line"><span class="cl">cluster nodes
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="7">
+</span></span></code></pre></div><ol start="7">
 <li>测试Redis集群高可用</li>
 </ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 查看节点</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 查看节点</span>
 </span></span><span class="line"><span class="cl">docker ps
 </span></span><span class="line"><span class="cl"><span class="c1"># 停止redis-03节点</span>
 </span></span><span class="line"><span class="cl">docker stop redis-03
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 重新启动redis-03节点</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 重新启动redis-03节点</span>
 </span></span><span class="line"><span class="cl">docker start redis-03
 </span></span><span class="line"><span class="cl">docker <span class="nb">exec</span> -it redis-01 /bin/sh
 </span></span><span class="line"><span class="cl"><span class="c1"># 查看集群</span>
 </span></span><span class="line"><span class="cl">redis-cli -c
 </span></span><span class="line"><span class="cl">cluster info
 </span></span><span class="line"><span class="cl">cluster nodes
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="docker安装elasticsearch单机">Docker安装Elasticsearch单机
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull elasticsearch:7.9.3
+</span></span></code></pre></div><h2 id="docker安装elasticsearch单机">Docker安装Elasticsearch单机
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull elasticsearch:7.9.3
 </span></span><span class="line"><span class="cl">mkdir /mydata/es/data
 </span></span><span class="line"><span class="cl">mkdir /mydata/es/config
 </span></span><span class="line"><span class="cl">mkdir /mydata/es/plugins
@@ -671,34 +511,7 @@
 </span></span><span class="line"><span class="cl">sudo chmod <span class="m">777</span> /mydata/es/data
 </span></span><span class="line"><span class="cl">sudo chmod <span class="m">777</span> /mydata/es/plugins
 </span></span><span class="line"><span class="cl">sudo chmod <span class="m">777</span> /mydata/es/elasticsearch.yml
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d <span class="se">\
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>	--name es <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    -e <span class="s2">&#34;ES_JAVA_OPTS=-Xms512m -Xmx512m&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    -e <span class="s2">&#34;discovery.type=single-node&#34;</span> <span class="se">\
@@ -719,24 +532,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># --privileged：授予逻辑卷访问权</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># --network elasticsearch ：加入一个名为elasticsearch的网络中</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># -p 9200:9200：端口映射配置</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull kibana:7.9.3
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull kibana:7.9.3
 </span></span><span class="line"><span class="cl">docker run --name kibana -e <span class="nv">ELASTICSEARCH_HOSTS</span><span class="o">=</span>http://127.0.0.1:9200 -p 5601:5601 -d kibana:7.9.3
 </span></span><span class="line"><span class="cl"><span class="c1"># 进入容器修改相应内容</span>
 </span></span><span class="line"><span class="cl">server.port: <span class="m">5601</span>
@@ -747,39 +543,8 @@
 </span></span><span class="line"><span class="cl">然后访问页面
 </span></span><span class="line"><span class="cl">http://127.0.0.1:5601/app/kibana
 </span></span><span class="line"><span class="cl"><span class="c1"># 暂未解决</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="docker安装nginx">Docker安装Nginx
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull nginx
+</span></span></code></pre></div><h2 id="docker安装nginx">Docker安装Nginx
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull nginx
 </span></span><span class="line"><span class="cl">mkdir -p /mydata/nginx/data
 </span></span><span class="line"><span class="cl">mkdir -p /mydata/nginx/log
 </span></span><span class="line"><span class="cl">mkdir -p /mydata/nginx/html
@@ -804,44 +569,14 @@
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/nginx/log:/var/log/nginx <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/nginx/html:/usr/share/nginx/html <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>-d nginx:latest
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="安装docker-compose">安装Docker-compose
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">https://github.com/docker/compose 
+</span></span></code></pre></div><h2 id="安装docker-compose">安装Docker-compose
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">https://github.com/docker/compose 
 </span></span><span class="line"><span class="cl"><span class="c1">#下载最新版本</span>
 </span></span><span class="line"><span class="cl">mv /data/docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
 </span></span><span class="line"><span class="cl">chmod <span class="m">777</span> /usr/local/bin/docker-compose
 </span></span><span class="line"><span class="cl">docker-compose -v
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="docker-compose安装mysql">Docker-compose安装MySQL
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="w">
+</span></span></code></pre></div><h2 id="docker-compose安装mysql">Docker-compose安装MySQL
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mysql</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">mysql:latest </span><span class="w">
@@ -854,27 +589,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/mydata/mysql/logs:/var/log/mysql</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">3306</span><span class="p">:</span><span class="m">3306</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="docker-compose安装rabbitmq">Docker-compose安装RabbitMQ
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># docker-compose.yml</span><span class="w">
+</span></span></span></code></pre></div><h2 id="docker-compose安装rabbitmq">Docker-compose安装RabbitMQ
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># docker-compose.yml</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
@@ -887,23 +603,11 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/mydata/rabbitmq/data/:/var/lib/rabbitmq/</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/mydata/rabbitmq/log/:/var/log/rabbitmq/log/</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 开启可视化插件</span>
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 开启可视化插件</span>
 </span></span><span class="line"><span class="cl">docker <span class="nb">exec</span> -it rabbitmq /bin/bash
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> /opt/rabbitmq/sbin
 </span></span><span class="line"><span class="cl">./rabbitmq-plugins <span class="nb">enable</span> rabbitmq_management
-</span></span></code></pre></td></tr></table>
-</div>
-</div>
+</span></span></code></pre></div>
 </section>
 
 
@@ -985,18 +689,18 @@
 
     <footer class="site-footer">
     <section class="copyright">
-        &copy; 
-        
-            2020 - 
+        &copy;
         
         2024 MJJ
     </section>
-    
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
+
 </footer>
+
+
 
 
     
@@ -1095,6 +799,12 @@
         document.head.appendChild(customFont);
     }());
 </script>
+
+<script
+    src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+    async
+></script>
+
 
     </body>
 </html>

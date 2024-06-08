@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://helloworld-mjj.github.io/p/%E6%9E%84%E5%BB%BA%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/'>
 
-<link rel="stylesheet" href="/scss/style.min.a97759a68d1d4ac91bec8d5a74e50fc95604dc48fcb09f98d94260c638cd2542.css"><meta property='og:title' content="构建我的博客网站">
+<link rel="stylesheet" href="/scss/style.min.65717061fb03ae5d17fd1ec4fe3215a7a57c6dadecda969c978d79577a8bef47.css"><meta property='og:title' content="构建我的博客网站">
 <meta property='og:description' content="使用Hugo构建自己的博客，记录下来并持续优化">
 <meta property='og:url' content='https://helloworld-mjj.github.io/p/%E6%9E%84%E5%BB%BA%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99/'>
 <meta property='og:site_name' content='MJJ&#39;s BLog 💭'>
@@ -384,6 +384,7 @@
     
 </div>
 
+
 </header>
 
     <section class="article-content">
@@ -391,50 +392,22 @@
     
     <h2 id="安装hugo">安装Hugo
 </h2><p>我使用的ubuntu系统，但是这个命令下载hugo下载下来不是最新的版本，所以有一些坑。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install hugo
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>我使用的是下面这个命令：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo snap install hugo
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>使用这个命令下载之后还需要将snap加入环境变量。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install hugo
+</span></span></code></pre></div><p>我使用的是下面这个命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo snap install hugo
+</span></span></code></pre></div><p>使用这个命令下载之后还需要将snap加入环境变量。</p>
 <h2 id="新建site">新建Site
 </h2><p>使用命令</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new site myblog
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>新建一个网站文件夹。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new site myblog
+</span></span></code></pre></div><p>新建一个网站文件夹。</p>
 <h2 id="下载主题">下载主题
 </h2><p>我用的这个stack主题</p>
 <h2 id="配置主题">配置主题
 </h2><p>将stack文件夹中的config.yaml和content文件夹拷贝myblog根目录。</p>
 <h2 id="本地启动">本地启动
 </h2><p>使用命令在本地启动：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo server -D
-</span></span></code></pre></td></tr></table>
-</div>
-</div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo server -D
+</span></span></code></pre></div>
 </section>
 
 
@@ -477,18 +450,18 @@
 
     <footer class="site-footer">
     <section class="copyright">
-        &copy; 
-        
-            2020 - 
+        &copy;
         
         2024 MJJ
     </section>
-    
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
+
 </footer>
+
+
 
 
     
@@ -587,6 +560,12 @@
         document.head.appendChild(customFont);
     }());
 </script>
+
+<script
+    src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+    async
+></script>
+
 
     </body>
 </html>
