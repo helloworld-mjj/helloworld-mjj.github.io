@@ -111,7 +111,7 @@
         <pubDate>Sat, 25 May 2024 17:30:58 +0800</pubDate>
         
         <guid>https://helloworld-mjj.github.io/p/docker%E7%AC%94%E8%AE%B0/</guid>
-        <description>&lt;img src="https://helloworld-mjj.github.io/194746-1716119266f08d.jpg" alt="Featured image of post Docker笔记" /&gt;&lt;h2 id=&#34;docker配置镜像加速&#34;&gt;Docker配置镜像加速
+        <description>&lt;img src="https://helloworld-mjj.github.io/p/docker%E7%AC%94%E8%AE%B0/194746-1716119266f08d.jpg" alt="Featured image of post Docker笔记" /&gt;&lt;h2 id=&#34;docker配置镜像加速&#34;&gt;Docker配置镜像加速
 &lt;/h2&gt;&lt;p&gt;目前主流 Linux 发行版均已使用 systemd 进行服务管理，这里介绍如何在使用 systemd 的 Linux 发行版中配置镜像加速器。&lt;/p&gt;
 &lt;p&gt;请首先执行以下命令，查看是否在 docker.service 文件中配置过镜像地址。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ systemctl cat docker &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep &lt;span class=&#34;s1&#34;&gt;&amp;#39;\-\-registry\-mirror&amp;#39;&lt;/span&gt;
