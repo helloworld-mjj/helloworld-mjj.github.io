@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="以文档的形式梳理手写网关项目，并持续更新...🛸">
-<title>手写网关文档</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="探索单机限流以及分布式限流的应用场景以及实践...">
+<title>限流算法与实践</title>
 
-<link rel='canonical' href='https://helloworld-mjj.github.io/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/'>
+<link rel='canonical' href='https://helloworld-mjj.github.io/p/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/'>
 
-<link rel="stylesheet" href="/scss/style.min.65717061fb03ae5d17fd1ec4fe3215a7a57c6dadecda969c978d79577a8bef47.css"><meta property='og:title' content="手写网关文档">
-<meta property='og:description' content="以文档的形式梳理手写网关项目，并持续更新...🛸">
-<meta property='og:url' content='https://helloworld-mjj.github.io/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/'>
+<link rel="stylesheet" href="/scss/style.min.65717061fb03ae5d17fd1ec4fe3215a7a57c6dadecda969c978d79577a8bef47.css"><meta property='og:title' content="限流算法与实践">
+<meta property='og:description' content="探索单机限流以及分布式限流的应用场景以及实践...">
+<meta property='og:url' content='https://helloworld-mjj.github.io/p/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/'>
 <meta property='og:site_name' content='MJJ&#39;s BLog 💭'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='API网关' /><meta property='article:published_time' content='2024-05-29T17:30:58&#43;08:00'/><meta property='article:modified_time' content='2024-05-29T17:30:58&#43;08:00'/><meta property='og:image' content='https://helloworld-mjj.github.io/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/002119-17151852794427.jpg' />
-<meta name="twitter:title" content="手写网关文档">
-<meta name="twitter:description" content="以文档的形式梳理手写网关项目，并持续更新...🛸"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://helloworld-mjj.github.io/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/002119-17151852794427.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='限流' /><meta property='article:published_time' content='2024-06-12T05:30:58&#43;07:00'/><meta property='article:modified_time' content='2024-06-12T05:30:58&#43;07:00'/><meta property='og:image' content='https://helloworld-mjj.github.io/p/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/003804-1714927084eebc.jpg' />
+<meta name="twitter:title" content="限流算法与实践">
+<meta name="twitter:description" content="探索单机限流以及分布式限流的应用场景以及实践..."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://helloworld-mjj.github.io/p/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/003804-1714927084eebc.jpg' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
   
@@ -297,29 +297,10 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#网关功能">网关功能</a></li>
-    <li><a href="#目录结构">目录结构</a>
+    <li><a href="#限流知识概述">限流知识概述</a></li>
+    <li><a href="#限流基本算法">限流基本算法</a>
       <ol>
-        <li><a href="#模块介绍">模块介绍</a></li>
-        <li><a href="#核心模块目录介绍">核心模块目录介绍</a></li>
-        <li><a href="#公共模块目录介绍">公共模块目录介绍</a></li>
-      </ol>
-    </li>
-    <li><a href="#功能实现">功能实现</a>
-      <ol>
-        <li><a href="#服务器实现">服务器实现</a></li>
-        <li><a href="#客户端实现">客户端实现</a></li>
-        <li><a href="#请求上下文实现">请求上下文实现</a></li>
-        <li><a href="#过滤器链实现">过滤器链实现</a>
-          <ol>
-            <li><a href="#鉴权过滤器">鉴权过滤器</a></li>
-            <li><a href="#限流过滤器">限流过滤器</a></li>
-            <li><a href="#负载均衡过滤器">负载均衡过滤器</a></li>
-            <li><a href="#监控过滤器">监控过滤器</a></li>
-            <li><a href="#灰度发布过滤器">灰度发布过滤器</a></li>
-            <li><a href="#路由过滤器">路由过滤器</a></li>
-          </ol>
-        </li>
+        <li><a href="#固定窗口限流">固定窗口限流</a></li>
       </ol>
     </li>
   </ol>
@@ -336,13 +317,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/">
-                <img src="/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/002119-17151852794427_hu1de00f31219697be107f0c9d232deda9_489357_800x0_resize_q75_box.jpg"
-                        srcset="/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/002119-17151852794427_hu1de00f31219697be107f0c9d232deda9_489357_800x0_resize_q75_box.jpg 800w, /p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/002119-17151852794427_hu1de00f31219697be107f0c9d232deda9_489357_1600x0_resize_q75_box.jpg 1600w"
+            <a href="/p/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/">
+                <img src="/p/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/003804-1714927084eebc_huc59d5a95af489e201ecf3ce9590c6fb9_593835_800x0_resize_q75_box.jpg"
+                        srcset="/p/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/003804-1714927084eebc_huc59d5a95af489e201ecf3ce9590c6fb9_593835_800x0_resize_q75_box.jpg 800w, /p/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/003804-1714927084eebc_huc59d5a95af489e201ecf3ce9590c6fb9_593835_1600x0_resize_q75_box.jpg 1600w"
                         width="800" 
                         height="450" 
                         loading="lazy"
-                        alt="Featured image of post 手写网关文档" />
+                        alt="Featured image of post 限流算法与实践" />
                 
             </a>
         </div>
@@ -361,12 +342,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/">手写网关文档</a>
+            <a href="/p/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/">限流算法与实践</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            以文档的形式梳理手写网关项目，并持续更新...🛸
+            探索单机限流以及分布式限流的应用场景以及实践...
         </h3>
         
     </div>
@@ -387,7 +368,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">May 29, 2024</time>
+                <time class="article-time--published">Jun 12, 2024</time>
             </div>
         
 
@@ -402,7 +383,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 6 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -418,82 +399,80 @@
     <section class="article-content">
     
     
-    <h2 id="网关功能">网关功能
-</h2><p>这里先梳理一下我们的网关主要的功能。</p>
-<ul>
-<li>请求路由: 这是网关的最核心的功能，将前端的请求聚合到网关进行分发。</li>
-<li>熔断限流: 为了下游服务的安全性，我们必须对部分可能出现大流量的接口进行限流，并对不可用的服务进行熔断防止服务雪崩。</li>
-<li>统一鉴权: 在网关层进行统一鉴权，让下游服务更专注于业务代码的编写。</li>
-<li>服务监控: 在网关层进行服务的监控，同样可以让下游服务专注于业务代码的编写。</li>
-<li>负载均衡: 这也是网关的一个核心功能，需要对多个相同的服务进行负载均衡，保证各个服务器可以分担压力。</li>
-<li>灰度发布: 灰度发布旨在提高服务的可用性，在发布新版本时不用停止服务。</li>
-</ul>
-<h2 id="目录结构">目录结构
-</h2><h3 id="模块介绍">模块介绍
-</h3><p><code>mGateway-client</code>: 定义了一些注解以及用于将测试服务注册到注册中心<br>
-<code>mGateway-http-server</code>: 定义了一些测试类，结合client模块注册到注册中心方便进行网关测试<br>
-<code>mGateway-common</code>: 此模块为公共模块，定义了一些通用的类<br>
-<code>mGateway-config-center</code>: 定义了配置中心的接口及其基于SPI的实现<br>
-<code>mGateway-register-center</code>: 定义了注册中心的接口及其基于SPI的实现<br>
-<code>mGateway-corn</code>: 此模块为核心模块，包括netty服务器和客户端、过滤器链、上下文的配置等</p>
-<h3 id="核心模块目录介绍">核心模块目录介绍
-</h3><p><code>BootStrap</code>: 网关的启动类，启动网关并加载配置和注册订阅服务<br>
-<code>Config</code>: 网关的配置信息，此类中配置了默认值，网关启动时会从classpath下的<code>gateway.properties</code>文件加载配置<br>
-<code>ConfigLoader</code>: 此类定义了加载配置的具体方法和步骤<br>
-<code>Container</code>: 此类实现了<code>lifeCycle</code>接口，用于管理netty的组件，包括它们的初始化、启动、终止<br>
-<code>netty</code>: 这个包中定义了一些netty的一些组件，包括netty服务器、netty客户端、Disruptor事件处理、Http请求处理等<br>
-<code>helper</code>: 这个包中定义了解析request和response的组件，以及异步Http请求客户端<br>
-<code>request</code>: 这个包中定义了网关的请求类<br>
-<code>response</code>: 这个包中定义了网关的响应类<br>
-<code>disruptor</code>: 这个包中配置了Disruptor框架<br>
-<code>filter</code>: 这个包中定义了一系列的过滤器，使用SPI的方式进行加载，包括鉴权过滤器、灰度发布过滤器、限流过滤器、负载均衡过滤器、监控过滤器、路由过滤器等<br>
-<code>context</code>: 这个包中定义了网关的上下文对象，所谓上下文就是贯穿了整个网关，包含了解析后的请求和响应<br>
-<code>cache</code>: 这个包中定义了网关的缓存，主要是Caffine实现的本地缓存</p>
-<h3 id="公共模块目录介绍">公共模块目录介绍
-</h3><p><code>config</code>: 此包定义了网关的一些配置信息，比如服务定义实体和服务实体，以及路由规则实体和服务映射关系<br>
-<code>constant</code>: 此包定义了一些常量<br>
-<code>enums</code>: 此包定义了一些枚举类型<br>
-<code>exception</code>: 此包定义了网关中的异常类<br>
-<code>utils</code>: 此包定义了一些工具类，包括对象转换、JWT工具、IP解析等</p>
-<h2 id="功能实现">功能实现
-</h2><h3 id="服务器实现">服务器实现
-</h3><p>我们做为网关首先需要可以接收网络请求，这里使用Netty构建服务器，主要得益于Netty的Reactor模型，netty服务器的实现主要在<code>com.gateway.core.netty.NettyHttpServer</code>这个类中。<br>
-主要思路是使用<code>BossEventLoopGroup</code>来管理网络连接，而<code>WorkerEventLoopGroup</code>来管理网络I/O，<code>WorkerEventLoopGroup</code>接收到I/O请求作为生产者生产一个事件交给<code>Disruptor</code>，而使用了一组消费者线程池来处理<code>Disruptor</code>中的事件。</p>
-<h3 id="客户端实现">客户端实现
-</h3><p>这里我们基于异步Http客户端<code>DefaultAsycHttpClient</code>结合Netty的EventLoopGroup构建了一个用来转发请求的异步Http客户端，其主要实现在<code>com.gateway.core.netty.NettyHttpClient</code>这个类中。</p>
-<h3 id="请求上下文实现">请求上下文实现
-</h3><p>这里我们首先定义了<code>IContext</code>接口定义了上下文规范。<br>
-<code>BaseContext</code>为上下文的基本实现，定义了上下文的协议、状态、异常、上下文相关参数、以及对应的netty上下文。<br>
-<code>GateContext</code>为网关上下文的实现，继承了<code>BaseContext</code>，并且封装了request和response以及请求规则和相关参数。</p>
-<h3 id="过滤器链实现">过滤器链实现
-</h3><p>所有的过滤器都需要实现<code>Filter</code>接口，启动时会以SPI的方式加载这些过滤器，只需要实现<code>Filter</code>这个接口就可以添加自定义的过滤器。<br>
-每次收到请求时我们都需要一个过滤器链来处理请求，这个过滤器链是根据<code>Rule</code>请求规则构建的，这里为了避免重复对同一种请求重复构建过滤器链，我们对过滤器链添加了缓存。同时我们需要一个过滤器链工厂来构建过滤器链，这个工厂不需要重复构建多个，因为这个工厂可以生产多个过滤器链，所以引入工厂模式和单例模式构建这个过滤器工厂用来生产过滤器链。<br>
-实际上我们的网关的核心功能也就是一些过滤器的集合。</p>
-<h4 id="鉴权过滤器">鉴权过滤器
-</h4><p>使用JWT鉴权</p>
-<h4 id="限流过滤器">限流过滤器
-</h4><p>我们的网关支持分布式限流与本地限流。<br>
-首先描述一下它们两个不同的使用场景，本地限流一般适用于单机的网关，根据下游服务的负载能力进行限流，单机网关使用分布式限流的话反倒会增加网络I/O，影响性能。而为了我们的网关支持高并发和高可用，我们网关必须支持集群，然而当集群模式下，每个网关都会聚合一部分请求，它们最终都会将相同的请求路由到同一个下游服务，最终下游服务收到的流量就是这些网关加起来的流量，这时候就需要使用分布式限流了，分布式限流可以保证我们网关转发到下游的服务流量总数一定。而集群模式下也未尝不可用本地限流，如果每个网关所聚合的请求数量相同时，我们可以让每个网关限流一部分，最后加起来也就是总的流量。<br>
-我们基于Redis实现了以下几种分布式限流：</p>
-<ol>
-<li>固定时间窗口限流<br>
-固定时间窗口限流实际上也叫计数器限流，就是统计每一秒的请求数是否超过限制。<br>
-我们使用的是Redis的原子自增指令来实现了计数器限流。
-然而此算法有很大的缺陷，如果是根据每秒请求数限流100，设想一下第1s进入了100，第2s也进入了100，但是，如果0~0.5s进入了10，0.5~1s进入了90，1~1.5s进入90，1.5到2s进入了10，这样总体看来第1s还是100，第2s还是100，但是0.5~1.5s也算是一秒，这一秒之内出现了180个请求，已经超出了限流的阈值，这就是这个算法的一个很大的缺陷，改善方法也就是使用滑动时间窗口算法。</li>
-<li>滑动时间窗口限流<br>
-滑动时间窗口实际上就是把固定时间窗口划分成更小的时间格，比如将1s划分为10格，每一格代表100ms的请求，然而这样依然是有误差的，误差原因和固定窗口是一样的，如果需要更高的精度，那就需要将时间窗口划分成更多更小的时间格。<br>
-我们这里使用Redis的zset，使用时间戳做sorce，可见我们将1s划分成了1000个时间格，即每个时间格代表1ms，但是这样当然也会有微小的误差，不过精度更高，可以容忍。</li>
-<li>令牌桶限流</li>
+    <h2 id="限流知识概述">限流知识概述
+</h2><p>限流是一种对请求或并发数进行限制的关键技术手段，旨在保障系统的正常运行。当服务资源有限、处理能力有限时，限流可以对调用服务的上游请求进行限制，以防止自身服务因资源耗尽而停止服务。</p>
+<p>在限流中，有两个重要的概念需要了解：</p>
+<p>阈值：指在单位时间内允许的请求量。例如，将 QPS（每秒请求数）限制为500，表示在1秒内最多接受500次请求。通过设置合适的阈值，可以控制系统的负载，避免过多的请求导致系统崩溃或性能下降。<br>
+拒绝策略：用于处理超过阈值的请求的策略。常见的拒绝策略包括直接拒绝、排队等待等。直接拒绝会立即拒绝超过阈值的请求，而排队等待则将请求放入队列中，按照一定的规则进行处理。选择合适的拒绝策略可以平衡系统的稳定性和用户体验。
+通过合理设置阈值和选择适当的拒绝策略，限流技术可以帮助系统应对突发的请求量激增、恶意用户访问或请求频率过高的情况，保障系统的稳定性和可用性。限流方案根据限流范围，可分为 单机限流和分布式限流 ；其中单机限流依据算法，又可分为 固定窗口、滑动窗口、漏桶和令牌桶限流等常见四种 。本文将对上述限流方案进行详细介绍。</p>
+<h2 id="限流基本算法">限流基本算法
+</h2><h3 id="固定窗口限流">固定窗口限流
+</h3><ol>
+<li>
+<p>算法介绍
+固定窗口算法是一种简单直观的限流算法，其原理是将时间划分为固定大小的窗口，在每个窗口内限制请求的数量或速率。具体实现时，可以使用一个计数器来记录当前窗口内的请求数，并与预设的阈值进行比较。固定窗口算法的原理如下：<br>
+将时间划分固定大小窗口，例如每秒一个窗口。<br>
+在每个窗口内，记录请求的数量。<br>
+当有请求到达时，将请求计数加一。<br>
+如果请求计数超过了预设的阈值（比如3个请求），拒绝该请求。<br>
+窗口结束后，重置请求计数。</p>
+</li>
+<li>
+<p>代码实现<br>
+单机版本</p>
+</li>
 </ol>
-<h4 id="负载均衡过滤器">负载均衡过滤器
-</h4><p>支持随机负载、轮询、加权轮询</p>
-<h4 id="监控过滤器">监控过滤器
-</h4><p>使用prompt进行监控</p>
-<h4 id="灰度发布过滤器">灰度发布过滤器
-</h4><h4 id="路由过滤器">路由过滤器
-</h4><p>使用Hystrix进行熔断机制</p>
-<p>——更多细节正在梳理中&hellip;</p>
-
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FixedWindowLimiter</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 窗口大小</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">windowSize</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 最大请求数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">maxRequests</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 当前窗口请求数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">requests</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 上次窗口重置时间</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">lastReset</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">FixedWindowLimiter</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">windowSize</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">maxRequests</span><span class="p">){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">windowSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">windowSize</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">maxRequests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">maxRequests</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 判定流量是否通过
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">allowRequest</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 检查是否需要重置窗口</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">()</span><span class="o">-</span><span class="n">lastReset</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">windowSize</span><span class="p">){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">requests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">lastReset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 检查请求数据是否超过阈值</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">requests</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">maxRequests</span><span class="p">){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 放行</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">requests</span><span class="o">++</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">InterruptedException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">FixedWindowLimiter</span><span class="w"> </span><span class="n">fixedWindowLimiter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FixedWindowLimiter</span><span class="p">(</span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">3</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="n">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">15</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kt">long</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">fixedWindowLimiter</span><span class="p">.</span><span class="na">allowRequest</span><span class="p">()){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">now</span><span class="o">+</span><span class="s">&#34;请求通过&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">now</span><span class="o">+</span><span class="s">&#34;请求被限流&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="n">100</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div>
 </section>
 
 
@@ -501,7 +480,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/api%E7%BD%91%E5%85%B3/">API网关</a>
+            <a href="/tags/%E9%99%90%E6%B5%81/">限流</a>
         
     </section>
 
@@ -523,23 +502,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/">
+    <a href="/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/">
         
         
             <div class="article-image">
-                <img src="/p/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/003804-1714927084eebc.89d35987f5a8242a9bbc498065989873_huc59d5a95af489e201ecf3ce9590c6fb9_593835_250x150_fill_q75_box_smart1.jpg" 
+                <img src="/p/%E6%89%8B%E5%86%99%E7%BD%91%E5%85%B3%E6%96%87%E6%A1%A3/002119-17151852794427.1599e5bf4868d491fbb26bf99084570a_hu1de00f31219697be107f0c9d232deda9_489357_250x150_fill_q75_box_smart1.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post 限流算法与实践"
+                        alt="Featured image of post 手写网关文档"
                         
-                        data-hash="md5-idNZh/WoJCqbvEmAZZiYcw==">
+                        data-hash="md5-FZnlv0ho1JH7smv5kIRXCg==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">限流算法与实践</h2>
+            <h2 class="article-title">手写网关文档</h2>
         </div>
     </a>
 </article>

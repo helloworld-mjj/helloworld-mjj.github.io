@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="记录使用Docker的相关命令，忘记时可以回顾一下">
+<title>test</title>
+
+<link rel='canonical' href='http://localhost:1313/p/test/'>
+
+<link rel="stylesheet" href="/scss/style.min.65717061fb03ae5d17fd1ec4fe3215a7a57c6dadecda969c978d79577a8bef47.css"><meta property='og:title' content="test">
+<meta property='og:description' content="记录使用Docker的相关命令，忘记时可以回顾一下">
+<meta property='og:url' content='http://localhost:1313/p/test/'>
+<meta property='og:site_name' content='MJJ&#39;s BLog 💭'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Docker' /><meta property='article:published_time' content='2024-05-25T17:30:58&#43;08:00'/><meta property='article:modified_time' content='2024-05-25T17:30:58&#43;08:00'/><meta property='og:image' content='http://localhost:1313/194746-1716119266f08d.jpg' />
+<meta name="twitter:title" content="test">
+<meta name="twitter:description" content="记录使用Docker的相关命令，忘记时可以回顾一下"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/194746-1716119266f08d.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu345e331c16da89175f826f8755971b5d_164854_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">MJJ&#39;s BLog 💭</a></h1>
+            <h2 class="site-description">🌱 Hello World ...</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='/index.xml'
+                        target="_blank"
+                        title="RSS"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="5" cy="19" r="1" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%9B%BE%E5%BA%93/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"/></svg>
+                
+                <span>图库</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%B7%A5%E5%85%B7/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M756-120 537-339l84-84 219 219-84 84Zm-552 0-84-84 276-276-68-68-28 28-51-51v82l-28 28-121-121 28-28h82l-50-50 142-142q20-20 43-29t47-9q24 0 47 9t43 29l-92 92 50 50-28 28 68 68 90-90q-4-11-6.5-23t-2.5-24q0-59 40.5-99.5T701-841q15 0 28.5 3t27.5 9l-99 99 72 72 99-99q7 14 9.5 27.5T841-701q0 59-40.5 99.5T701-561q-12 0-24-2t-23-7L204-120Z"/></svg>
+                
+                <span>工具</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#docker配置镜像加速">Docker配置镜像加速</a></li>
+    <li><a href="#docker构建redis集群主从模式">Docker构建Redis集群（主从模式）</a></li>
+    <li><a href="#docker安装elasticsearch单机">Docker安装Elasticsearch单机</a></li>
+    <li><a href="#docker安装nginx">Docker安装Nginx</a></li>
+    <li><a href="#安装docker-compose">安装Docker-compose</a></li>
+    <li><a href="#docker-compose安装mysql">Docker-compose安装MySQL</a></li>
+    <li><a href="#docker-compose安装rabbitmq">Docker-compose安装RabbitMQ</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/test/">
+                
+                    <img src="/194746-1716119266f08d.jpg" loading="lazy" alt="Featured image of post test" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/" style="background-color: #2a9d8f; color: #fff;">
+                我的笔记
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/test/">test</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            记录使用Docker的相关命令，忘记时可以回顾一下
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 25, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="docker配置镜像加速">Docker配置镜像加速
+</h2><p>目前主流 Linux 发行版均已使用 systemd 进行服务管理，这里介绍如何在使用 systemd 的 Linux 发行版中配置镜像加速器。</p>
+<p>请首先执行以下命令，查看是否在 docker.service 文件中配置过镜像地址。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ systemctl cat docker <span class="p">|</span> grep <span class="s1">&#39;\-\-registry\-mirror&#39;</span>
+</span></span></code></pre></div><p>如果该命令有输出，那么请执行 $ systemctl cat docker 查看 ExecStart= 出现的位置，修改对应的文件内容去掉 &ndash;registry-mirror 参数及其值，并按接下来的步骤进行配置。</p>
+<p>如果以上命令没有任何输出，那么就可以在 /etc/docker/daemon.json 中写入如下内容（如果文件不存在请新建该文件）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;registry-mirrors&#34;</span>: <span class="o">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://hub-mirror.c.163.com&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://mirror.baidubce.com&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>注意，一定要保证该文件符合 json 规范，否则 Docker 将不能启动。
+之后重新启动服务。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ sudo systemctl daemon-reload
+</span></span><span class="line"><span class="cl">$ sudo systemctl restart docker
+</span></span></code></pre></div><h2 id="docker构建redis集群主从模式">Docker构建Redis集群（主从模式）
+</h2><ol>
+<li>创建Redis网络</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker network ls <span class="c1">#查看网络</span>
+</span></span><span class="line"><span class="cl">docker network create redis --subnet 192.168.100.0/24 <span class="c1">#创建网络</span>
+</span></span><span class="line"><span class="cl">docker network inspect redis <span class="c1">#查看网络配置信息</span>
+</span></span></code></pre></div><ol start="2">
+<li>创建Redis配置文件</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="k">for</span> port in <span class="k">$(</span>seq <span class="m">1</span> 6<span class="k">)</span><span class="p">;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="k">do</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>mkdir -p /mydata/redis/node-<span class="si">${</span><span class="nv">port</span><span class="si">}</span>/conf
+</span></span><span class="line"><span class="cl">touch /mydata/redis/node-<span class="si">${</span><span class="nv">port</span><span class="si">}</span>/conf/redis.conf
+</span></span><span class="line"><span class="cl">cat <span class="s">&lt;&lt; EOF &gt;/mydata/redis/node-${port}/conf/redis.conf 
+</span></span></span><span class="line"><span class="cl"><span class="s">port 6379
+</span></span></span><span class="line"><span class="cl"><span class="s">bind 0.0.0.0
+</span></span></span><span class="line"><span class="cl"><span class="s">cluster-enabled yes 
+</span></span></span><span class="line"><span class="cl"><span class="s">cluster-config-file nodes.conf 
+</span></span></span><span class="line"><span class="cl"><span class="s">cluster-node-timeout 5000 
+</span></span></span><span class="line"><span class="cl"><span class="s">cluster-announce-ip 192.168.100.1${port} 
+</span></span></span><span class="line"><span class="cl"><span class="s">cluster-announce-port 6379 
+</span></span></span><span class="line"><span class="cl"><span class="s">cluster-announce-bus-port 16379 
+</span></span></span><span class="line"><span class="cl"><span class="s">appendonly yes
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></div><ol start="3">
+<li>启动Redis容器</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 第一个节点配置命令</span>
+</span></span><span class="line"><span class="cl">docker run -p 6371:6379 -p 16371:16379 --name redis-01 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-1/data:/data <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-1/conf/redis.conf:/etc/redis/redis.conf <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-d --net redis --ip 192.168.100.11 redis:latest redis-server /etc/redis/redis.conf 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 命令参数解释：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -p 6371:6379 对外端口</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -p 16371:16379 Redis内部通信端口</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -v /mydata/redis/node-1/data:/data 绑定挂载卷（容器内外挂载路径）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -d 在后台运行容器并打印容器ID</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --net redis 使用自定义redis网络</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --ip 指定IP地址</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># redis:latest 指定Redis版本号</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 第二个节点配置命令</span>
+</span></span><span class="line"><span class="cl">docker run -p 6372:6379 -p 16372:16379 --name redis-02 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-2/data:/data <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-2/conf/redis.conf:/etc/redis/redis.conf <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-d --net redis --ip 192.168.100.12 redis:latest redis-server /etc/redis/redis.conf 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 第三个节点配置命令</span>
+</span></span><span class="line"><span class="cl">docker run -p 6373:6379 -p 16373:16379 --name redis-03 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-3/data:/data <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-3/conf/redis.conf:/etc/redis/redis.conf <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-d --net redis --ip 192.168.100.13 redis:latest redis-server /etc/redis/redis.conf 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 第四个节点配置命令</span>
+</span></span><span class="line"><span class="cl">docker run -p 6374:6379 -p 16374:16379 --name redis-04 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-4/data:/data <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-4/conf/redis.conf:/etc/redis/redis.conf <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-d --net redis --ip 192.168.100.14 redis:latest redis-server /etc/redis/redis.conf 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 第五个节点配置命令</span>
+</span></span><span class="line"><span class="cl">docker run -p 6375:6379 -p 16375:16379 --name redis-05 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-5/data:/data <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-5/conf/redis.conf:/etc/redis/redis.conf <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-d --net redis --ip 192.168.100.15 redis:latest redis-server /etc/redis/redis.conf 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 第六个节点配置命令</span>
+</span></span><span class="line"><span class="cl">docker run -p 6376:6379 -p 16376:16379 --name redis-06 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-6/data:/data <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/redis/node-6/conf/redis.conf:/etc/redis/redis.conf <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-d --net redis --ip 192.168.100.16 redis:latest redis-server /etc/redis/redis.conf 
+</span></span></code></pre></div><ol start="5">
+<li>创建Redis集群</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it redis-01 /bin/sh
+</span></span><span class="line"><span class="cl">redis-cli --cluster create 192.168.100.11:6379 192.168.100.12:6379 192.168.100.13:6379 192.168.100.14:6379 192.168.100.15:6379 192.168.100.16:6379 --cluster-replicas <span class="m">1</span>
+</span></span></code></pre></div><ol start="6">
+<li>查看Redis集群</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 进入集群</span>
+</span></span><span class="line"><span class="cl">redis-cli -c
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看集群内节点</span>
+</span></span><span class="line"><span class="cl">cluster nodes
+</span></span></code></pre></div><ol start="7">
+<li>测试Redis集群高可用</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 查看节点</span>
+</span></span><span class="line"><span class="cl">docker ps
+</span></span><span class="line"><span class="cl"><span class="c1"># 停止redis-03节点</span>
+</span></span><span class="line"><span class="cl">docker stop redis-03
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 重新启动redis-03节点</span>
+</span></span><span class="line"><span class="cl">docker start redis-03
+</span></span><span class="line"><span class="cl">docker <span class="nb">exec</span> -it redis-01 /bin/sh
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看集群</span>
+</span></span><span class="line"><span class="cl">redis-cli -c
+</span></span><span class="line"><span class="cl">cluster info
+</span></span><span class="line"><span class="cl">cluster nodes
+</span></span></code></pre></div><h2 id="docker安装elasticsearch单机">Docker安装Elasticsearch单机
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull elasticsearch:7.9.3
+</span></span><span class="line"><span class="cl">mkdir /mydata/es/data
+</span></span><span class="line"><span class="cl">mkdir /mydata/es/config
+</span></span><span class="line"><span class="cl">mkdir /mydata/es/plugins
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;http.host: 0.0.0.0&#34;</span> &gt;&gt; /mydata/es/config/elasticsearch.yml
+</span></span><span class="line"><span class="cl">sudo chmod <span class="m">777</span> /mydata/es/data
+</span></span><span class="line"><span class="cl">sudo chmod <span class="m">777</span> /mydata/es/plugins
+</span></span><span class="line"><span class="cl">sudo chmod <span class="m">777</span> /mydata/es/elasticsearch.yml
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run -d <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	--name es <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -e <span class="s2">&#34;ES_JAVA_OPTS=-Xms512m -Xmx512m&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -e <span class="s2">&#34;discovery.type=single-node&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -v /mydata/es/data:/usr/share/elasticsearch/data <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -v /mydata/es/plugins:/usr/share/elasticsearch/plugins <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -v /mydata/es/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --privileged <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -p 9200:9200 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -p 9300:9300 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>elasticsearch:7.9.3
+</span></span><span class="line"><span class="cl"><span class="c1"># -e &#34;cluster.name=es-docker-cluster&#34;：设置集群名称</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -e &#34;http.host=0.0.0.0&#34;：监听的地址，可以外网访问</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -e &#34;ES_JAVA_OPTS=-Xms512m -Xmx512m&#34;：内存大小</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -e &#34;discovery.type=single-node&#34;：非集群模式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -v /mydata/es/data:/usr/share/elasticsearch/data：挂载逻辑卷，绑定elasticsearch的数据目录</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -v /mydata/es/logs:/usr/share/elasticsearch/logs：挂载逻辑卷，绑定elasticsearch的日志目录</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -v /mydata/es/plugins:/usr/share/elasticsearch/plugins：挂载逻辑卷，绑定elasticsearch的插件目录</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --privileged：授予逻辑卷访问权</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --network elasticsearch ：加入一个名为elasticsearch的网络中</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -p 9200:9200：端口映射配置</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull kibana:7.9.3
+</span></span><span class="line"><span class="cl">docker run --name kibana -e <span class="nv">ELASTICSEARCH_HOSTS</span><span class="o">=</span>http://127.0.0.1:9200 -p 5601:5601 -d kibana:7.9.3
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入容器修改相应内容</span>
+</span></span><span class="line"><span class="cl">server.port: <span class="m">5601</span>
+</span></span><span class="line"><span class="cl">server.host: 0.0.0.0
+</span></span><span class="line"><span class="cl">elasticsearch.hosts: <span class="o">[</span> <span class="s2">&#34;http://127.0.0.1:9200&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">i18n.locale: <span class="s2">&#34;Zh-CN&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">然后访问页面
+</span></span><span class="line"><span class="cl">http://127.0.0.1:5601/app/kibana
+</span></span><span class="line"><span class="cl"><span class="c1"># 暂未解决</span>
+</span></span></code></pre></div><h2 id="docker安装nginx">Docker安装Nginx
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull nginx
+</span></span><span class="line"><span class="cl">mkdir -p /mydata/nginx/data
+</span></span><span class="line"><span class="cl">mkdir -p /mydata/nginx/log
+</span></span><span class="line"><span class="cl">mkdir -p /mydata/nginx/html
+</span></span><span class="line"><span class="cl">mkdir -p /mydata/nginx/conf
+</span></span><span class="line"><span class="cl"><span class="c1"># 容器中的 nginx.conf 文件和 conf.d 文件夹复制到宿主机</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成容器</span>
+</span></span><span class="line"><span class="cl">docker run --name nginx -p 80:80 -d nginx
+</span></span><span class="line"><span class="cl"><span class="c1"># 将容器nginx.conf文件复制到宿主机</span>
+</span></span><span class="line"><span class="cl">docker cp nginx:/etc/nginx/nginx.conf /mydata/nginx/conf/nginx.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># 将容器conf.d文件夹下内容复制到宿主机</span>
+</span></span><span class="line"><span class="cl">docker cp nginx:/etc/nginx/conf.d /mydata/nginx/conf/conf.d
+</span></span><span class="line"><span class="cl"><span class="c1"># 将容器中的html文件夹复制到宿主机</span>
+</span></span><span class="line"><span class="cl">docker cp nginx:/usr/share/nginx/html /mydata/nginx/
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除正在运行的nginx容器</span>
+</span></span><span class="line"><span class="cl">docker rm -f nginx
+</span></span><span class="line"><span class="cl">docker run <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-p 80:80 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--name nginx <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--net host <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/nginx/conf/nginx.conf:/etc/nginx/nginx.conf <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/nginx/conf/conf.d:/etc/nginx/conf.d <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/nginx/log:/var/log/nginx <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-v /mydata/nginx/html:/usr/share/nginx/html <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-d nginx:latest
+</span></span></code></pre></div><h2 id="安装docker-compose">安装Docker-compose
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">https://github.com/docker/compose 
+</span></span><span class="line"><span class="cl"><span class="c1">#下载最新版本</span>
+</span></span><span class="line"><span class="cl">mv /data/docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
+</span></span><span class="line"><span class="cl">chmod <span class="m">777</span> /usr/local/bin/docker-compose
+</span></span><span class="line"><span class="cl">docker-compose -v
+</span></span></code></pre></div><h2 id="docker-compose安装mysql">Docker-compose安装MySQL
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mysql</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">mysql:latest </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">mysql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">mysql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/mydata/mysql/db:/var/lib/mysql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/mydata/mysql/logs:/var/log/mysql</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">3306</span><span class="p">:</span><span class="m">3306</span><span class="w">
+</span></span></span></code></pre></div><h2 id="docker-compose安装rabbitmq">Docker-compose安装RabbitMQ
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># docker-compose.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">rabbitmq:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">rabbitmq</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">5672</span><span class="p">:</span><span class="m">5672</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">15672</span><span class="p">:</span><span class="m">15672</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/mydata/rabbitmq/data/:/var/lib/rabbitmq/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/mydata/rabbitmq/log/:/var/log/rabbitmq/log/</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 开启可视化插件</span>
+</span></span><span class="line"><span class="cl">docker <span class="nb">exec</span> -it rabbitmq /bin/bash
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /opt/rabbitmq/sbin
+</span></span><span class="line"><span class="cl">./rabbitmq-plugins <span class="nb">enable</span> rabbitmq_management
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/docker/">Docker</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/docker%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/p/docker%E7%AC%94%E8%AE%B0/194746-1716119266f08d.5b8e17be5b0102dc70776cf465490304_huac73a7affe6da3335d5016ff76e29125_603321_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Docker笔记"
+                        
+                        data-hash="md5-W44XvlsBAtxwd2z0ZUkDBA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Docker笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/001415-171388885556e3.3f249ed414c45fab0d4ad709896b6816_hu2681fde5eab9be8631e1ce8430df406a_556704_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 书籍阅读"
+                        
+                        data-hash="md5-PySe1BTEX6sNStcJiWtoFg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">书籍阅读</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus"],"lang":"zh-CN","locale":{"admin":"博主","placeholder":null},"requiredMeta":["name","email","url"],"serverURL":"https://comments-three-mocha.vercel.app/","visitor":false});
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy;
+        
+        2024 MJJ
+    </section>
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+
+</footer>
+
+
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script
+    src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+    async
+></script>
+
+
+    </body>
+</html>
