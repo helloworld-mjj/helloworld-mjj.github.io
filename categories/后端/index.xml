@@ -90,37 +90,6 @@
 &lt;p&gt;——更多细节正在梳理中&amp;hellip;&lt;/p&gt;
 </description>
         </item>
-        <item>
-        <title>微服务网关对比</title>
-        <link>https://helloworld-mjj.github.io/p/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3%E5%AF%B9%E6%AF%94/</link>
-        <pubDate>Sat, 25 May 2024 17:30:58 +0800</pubDate>
-        
-        <guid>https://helloworld-mjj.github.io/p/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3%E5%AF%B9%E6%AF%94/</guid>
-        <description>&lt;h2 id=&#34;api网关回顾&#34;&gt;API网关回顾
-&lt;/h2&gt;&lt;h3 id=&#34;主要功能&#34;&gt;主要功能
-&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;路由转发：通过路由功能将请求转发到目标服务。&lt;/li&gt;
-&lt;li&gt;负载均衡：多个服务之间的负载均衡。&lt;/li&gt;
-&lt;li&gt;统一鉴权：对用户的身份进行统一的验证。&lt;/li&gt;
-&lt;li&gt;协议转换：通过协议转换整合REST、AMQP、RPC等不同的协议。&lt;/li&gt;
-&lt;li&gt;指标监控：网关对发送到服务的请求进行监控。&lt;/li&gt;
-&lt;li&gt;限流熔断：在网关层面对请求进行限流，并且当服务发生故障时有响应的处理策略，使用户体验良好。&lt;/li&gt;
-&lt;li&gt;黑白名单：过滤请求，拦截异常的请求信息。&lt;/li&gt;
-&lt;li&gt;灰度发布：可以在多个部署下实现灰度发布。&lt;/li&gt;
-&lt;li&gt;流量染色：可以在进出流量时抓住时机。
-20：微服务网管作为自己的日志收集和收集器，对服务URL粒度的日志请求和响应信息就进行拦截。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;常见的api网关&#34;&gt;常见的API网关
-&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;Nginx&lt;/li&gt;
-&lt;li&gt;Zuul&lt;/li&gt;
-&lt;li&gt;SpringCloud Gateway&lt;/li&gt;
-&lt;li&gt;Kong&lt;/li&gt;
-&lt;li&gt;OpenRestry&lt;/li&gt;
-&lt;li&gt;Traefik&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-        </item>
         
     </channel>
 </rss>
